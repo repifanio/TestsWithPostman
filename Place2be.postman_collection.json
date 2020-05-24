@@ -1,0 +1,2321 @@
+{
+	"info": {
+		"_postman_id": "0e4a4227-c9d1-4da8-8a94-8ddd9a30b0fe",
+		"name": "Place2be",
+		"description": "Collection para o projeto Place2be GPA",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Cad Place",
+			"item": [
+				{
+					"name": "Buscar Owner",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "69896fd1-6d0c-4adb-853e-03fac7814c42",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response includes results id\", function(){\r",
+									"    pm.response.json().map(item => {\r",
+									"        pm.expect(item).to.include.keys(\"id\");    \r",
+									"    } )\r",
+									"})\r",
+									"\r",
+									"let firstResponse = pm.response.json()[0];\r",
+									"let id_owner = firstResponse.id;\r",
+									"\r",
+									"pm.environment.set(\"id_owner\", id_owner);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/search-owners/Emp",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"search-owners",
+								"Emp"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Buscar Owner",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/search-owners/Emp",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"search-owners",
+										"Emp"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "69"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"45-otxiNXluoMEc3YH20E9xfffZmJ8\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 18 May 2020 01:52:12 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": 1,\n        \"name\": \"Empreendedor X\",\n        \"email\": \"empreendedor.x@email.com\"\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "Carregar serviços",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "71c78bab-c724-44f6-8d76-d2856941b815",
+								"exec": [
+									"pm.test(\"Retorno deve ser 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response includes results id\", function(){\r",
+									"    pm.response.json().map(item => {\r",
+									"        pm.expect(item).to.include.keys(\"id\");    \r",
+									"    } )\r",
+									"})\r",
+									"\r",
+									"let firstResponse = pm.response.json()[0];\r",
+									"let id_service = firstResponse.id;\r",
+									"\r",
+									"pm.environment.set(\"id_service\", id_service);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/services-types",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"services-types"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Carregar serviços",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/services-types",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"services-types"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "123"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"7b-m5/fdP0pAF2DLtkv5zs8J5+u0Jg\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 18 May 2020 02:27:59 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": 1,\n        \"name\": \"Administração\"\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "Inserir dados da primeira tela",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "7663e5f0-2967-4c55-ae53-9181c056b814",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Response includes results place_id\", function(){\r",
+									"    console.log(pm.response.json());\r",
+									"    pm.expect(pm.response.json().place).to.include.keys(\"place_id\");    \r",
+									"});\r",
+									"\r",
+									"let firstResponse = pm.response.json().place;\r",
+									"let id_place = firstResponse.place_id;\r",
+									"\r",
+									"pm.environment.set(\"id_place\", id_place);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"owner_id\": \"{{id_owner}}\",\n    \"service_type_id\": \"{{id_service}}\",\n    \"rental_number\": 12,\n    \"administration_tax\": 10,\n    \"indicated_by\": \"Camargo\",\n    \"month\": \"Dezembro\",\n    \"transfer_day\": 10\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/place-step-one",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"place-step-one"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Inserir dados da primeira tela",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"owner_id\": 1,\n    \"service_type_id\": 1,\n    \"rental_number\": 12,\n    \"administration_tax\": 10,\n    \"indicated_by\": \"Camargo\",\n    \"month\": \"Dezembro\",\n    \"transfer_day\": 10\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/place-step-one",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"place-step-one"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "334"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"14e-Sb2h42jLrWRjBZRazhChCbxq6y4\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 18 May 2020 01:55:06 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"place\": {\n        \"id\": 171,\n        \"active\": true,\n        \"service_type_id\": 1,\n        \"indicated_by\": \"Camargo\",\n        \"is_completed\": false,\n        \"updatedAt\": \"2020-05-18T01:55:06.569Z\",\n        \"createdAt\": \"2020-05-18T01:55:06.569Z\",\n        \"full_month\": \"Dezembro\",\n        \"transfer_day\": 10,\n        \"rental_number\": 12,\n        \"place_id\": 331,\n        \"place_contract_tax_id\": 1,\n        \"place_contract_id\": 231,\n        \"is_unique_payment_tax\": false\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Carregar tipos de documentos",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "fda0f24f-2ceb-49df-8311-07494cc5f6d9",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response includes results description\", function(){\r",
+									"    pm.response.json().map(item => {\r",
+									"        pm.expect(item).to.include.keys(\"description\");    \r",
+									"    } )\r",
+									"})\r",
+									"\r",
+									"let firstResponse = pm.response.json()[0];\r",
+									"let description_document_type = firstResponse.description;\r",
+									"\r",
+									"pm.environment.set(\"description_document_type\", description_document_type);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/documents-type",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"documents-type"
+							]
+						},
+						"description": "Carrega os tipos de documentos"
+					},
+					"response": [
+						{
+							"name": "Carregar tipos de documentos",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/documents-type",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"documents-type"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "194"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"c2-dbEb6046/ElNbLJfnAcHbxYUJyw\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 18 May 2020 02:31:15 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"name\": \"\",\n        \"description\": \"contrato-social\"\n    }\n]"
+						},
+						{
+							"name": "Carregar tipos de documentos",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/documents-type",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"documents-type"
+									]
+								}
+							},
+							"_postman_previewlanguage": "Text",
+							"header": [],
+							"cookie": [],
+							"body": ""
+						}
+					]
+				},
+				{
+					"name": "Upload de docs",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "f562b1ba-78d7-4d49-8c63-df54a47ba266",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response includes results doc_id\", function(){\r",
+									"    pm.expect(pm.response.json()).to.include.keys(\"id\");    \r",
+									"})\r",
+									"\r",
+									"let firstResponse = pm.response.json();\r",
+									"let id_doc = firstResponse.id;\r",
+									"let original_name = firstResponse.original_name;\r",
+									"\r",
+									"pm.environment.set(\"original_name_doc\", original_name);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/C:/Users/Rafael.epifanio/Desktop/Sem título.png"
+								},
+								{
+									"key": "document_type",
+									"value": "{{description_document_type}}",
+									"type": "text"
+								},
+								{
+									"key": "origin",
+									"value": "{{id_place}}",
+									"type": "text"
+								}
+							],
+							"options": {
+								"formdata": {}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/place-docs",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"place-docs"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Upload de docs",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "document_type",
+											"value": "contrato-proprietario",
+											"type": "text"
+										},
+										{
+											"key": "origin",
+											"value": "281",
+											"type": "text"
+										},
+										{
+											"key": "file",
+											"type": "file",
+											"src": "/C:/Users/rafae/Área de Trabalho/postman.jpg"
+										}
+									],
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/place-docs",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"place-docs"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "342"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"156-zduF5WZFWHkj/vQG7fKgGPLvnxo\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 18 May 2020 01:48:49 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 1391,\n    \"original_name\": \"postman.jpg\",\n    \"file_name\": \"036f56902cda79f07d8f12b6834f5acc.jpg\",\n    \"path\": \"C:\\\\Users\\\\rafae\\\\Documents\\\\Projetos\\\\place2b-backend\\\\temp\\\\uploads\\\\036f56902cda79f07d8f12b6834f5acc.jpg\",\n    \"document_type\": \"contrato-proprietario\",\n    \"origin\": \"281\",\n    \"updatedAt\": \"2020-05-18T01:48:49.686Z\",\n    \"createdAt\": \"2020-05-18T01:48:49.686Z\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Listar documentos",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"id": "c9b93b45-2bc3-4d27-8b28-c2afe48c2b19"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/list-docs/281",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"list-docs",
+								"281"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Listar documentos",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/list-docs/281",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"list-docs",
+										"281"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "3024"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"bd0-GOoizm/+Lk1nJix8l0wVos7Oj7E\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 18 May 2020 02:32:16 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"doc_id\": 1201,\n        \"original_name\": \"indicacao_mobile_horizontal.png\",\n        \"document_type\": \"contrato-proprietario\",\n        \"updated_at\": \"2020-05-18T01:45:46.000Z\",\n        \"place_id\": \"281\"\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "Delete document",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "76901272-6014-46c4-a998-3d3b71772f23",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/remove-file/{{id_doc}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"remove-file",
+								"{{id_doc}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Adicionar todos docs inseridos",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "9962165e-5757-4266-9ec8-b29ca74f5985",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"docs\": [\n        {\n            \"title\": \"{{original_name_doc}}\"\n        }\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/insert-all-docs/{{id_place}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"insert-all-docs",
+								"{{id_place}}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Adicionar todos docs inseridos",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"docs\": [\n        {\n            \"title\": \"{{original_name_doc}}\"\n        }\n    ]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/insert-all-docs/{{id_place}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"insert-all-docs",
+										"{{id_place}}"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "336"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"150-M0XpdD5Owek8c9zbHgYOxvyiZ84\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 24 May 2020 04:41:56 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": 420,\n        \"original_name\": \"Sem título.png\",\n        \"name\": \"8a2b0348819cff647b7d73b395e42b69.png\",\n        \"path\": \"C:\\\\Users\\\\Rafael.epifanio\\\\Documents\\\\Projetos\\\\place2b-backend\\\\temp\\\\uploads\\\\8a2b0348819cff647b7d73b395e\",\n        \"red_tape_document_type_id\": 5,\n        \"place_id\": \"1030\",\n        \"updatedAt\": \"2020-05-24T04:41:55.759Z\",\n        \"createdAt\": \"2020-05-24T04:41:55.759Z\"\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "Inserir imagem",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "e053bfc5-33fb-4e99-b99b-8779b8281d00",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response includes results imagem_id\", function(){\r",
+									"    pm.expect(pm.response.json()).to.include.keys(\"id\");    \r",
+									"    pm.expect(pm.response.json()).to.include.keys(\"name\");  \r",
+									"})\r",
+									"\r",
+									"let firstResponse = pm.response.json();\r",
+									"let id_img = firstResponse.id;\r",
+									"let name_img = firstResponse.name;\r",
+									"\r",
+									"pm.environment.set(\"id_img\", id_img);\r",
+									"pm.environment.set(\"name_img\", name_img);\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/C:/Users/Rafael.epifanio/Pictures/nodejs-wallpaper-1_0.png"
+								},
+								{
+									"key": "name",
+									"value": "Picture_1",
+									"type": "text"
+								},
+								{
+									"key": "origin",
+									"value": "{{id_place}}",
+									"type": "text"
+								},
+								{
+									"key": "document_type",
+									"value": "place-picture",
+									"type": "text"
+								}
+							],
+							"options": {
+								"formdata": {}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/place-pictures",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"place-pictures"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Inserir imagem",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "file",
+											"type": "file",
+											"src": "/C:/Users/Rafael.epifanio/Pictures/nodejs-wallpaper-1_0.png"
+										},
+										{
+											"key": "name",
+											"value": "Picture_1",
+											"type": "text"
+										},
+										{
+											"key": "origin",
+											"value": "{{id_place}}",
+											"type": "text"
+										},
+										{
+											"key": "document_type",
+											"value": "place-picture",
+											"type": "text"
+										}
+									],
+									"options": {
+										"formdata": {}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/place-pictures",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"place-pictures"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "457"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"1c9-NFrQ8wjr7OWyF+I2lbtAiIVbHMQ\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 24 May 2020 04:42:16 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"url\": \"http://localhost:3001/static/images/31edc4f0b73cad1696754393c77561ee.png\",\n    \"id\": 3988,\n    \"original_name\": \"nodejs-wallpaper-1_0.png\",\n    \"file_name\": \"31edc4f0b73cad1696754393c77561ee.png\",\n    \"path\": \"C:\\\\Users\\\\Rafael.epifanio\\\\Documents\\\\Projetos\\\\place2b-backend\\\\temp\\\\images\\\\31edc4f0b73cad1696754393c77561ee.png\",\n    \"document_type\": \"place-picture\",\n    \"name\": \"Picture_1\",\n    \"origin\": \"1030\",\n    \"updatedAt\": \"2020-05-24T04:42:16.574Z\",\n    \"createdAt\": \"2020-05-24T04:42:16.574Z\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Inserir imagem thumbnail",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "aafcfd4e-b713-41d5-8e44-6d73e2d6f625",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response includes results imagem_id\", function(){\r",
+									"    pm.expect(pm.response.json()).to.include.keys(\"id\");    \r",
+									"    pm.expect(pm.response.json()).to.include.keys(\"name\");  \r",
+									"})\r",
+									"\r",
+									"let firstResponse = pm.response.json();\r",
+									"let id_img = firstResponse.id;\r",
+									"let name_img = firstResponse.name;\r",
+									"\r",
+									"pm.environment.set(\"id_img\", id_img);\r",
+									"pm.environment.set(\"name_img\", name_img);\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/C:/Users/Rafael.epifanio/Pictures/nodejs-wallpaper-1_0.png"
+								},
+								{
+									"key": "name",
+									"value": "Picture_1",
+									"type": "text"
+								},
+								{
+									"key": "origin",
+									"value": "{{id_place}}",
+									"type": "text"
+								},
+								{
+									"key": "document_type",
+									"value": "place-picture-thumbnail",
+									"type": "text"
+								}
+							],
+							"options": {
+								"formdata": {}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/place-pictures",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"place-pictures"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar imagens",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "164d5cc5-0498-418d-8e8c-c6416ddc2750",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/list-pictures/{{id_place}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"list-pictures",
+								"{{id_place}}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Listar imagens",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/list-pictures/{{id_place}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"list-pictures",
+										"{{id_place}}"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "348"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"15c-78Nmd91RSIsgWM3FiaeZcGWnhbo\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 24 May 2020 04:43:04 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"picture_id\": 3989,\n        \"path\": \"C:\\\\Users\\\\Rafael.epifanio\\\\Documents\\\\Projetos\\\\place2b-backend\\\\temp\\\\images\\\\f78599218983840b5c1d2c941d5e\",\n        \"name\": \"Picture_1\",\n        \"updated_at\": \"2020-05-24T04:42:39.000Z\",\n        \"place_id\": \"1030\",\n        \"url\": \"http://localhost:3001/static/images/f78599218983840b5c1d2c941d5ec258.png\",\n        \"file_name\": \"f78599218983840b5c1d2c941d5ec258.png\"\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "Delete imagem",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "b51602ec-22ca-4e52-ad39-e4969a03a474",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/remove-picture/1171",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"remove-picture",
+								"1171"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Adiciona ordem nas imagens",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "e8bbef40-a6ea-424e-bd68-3fe102edc8dd",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"images\": [\r\n\t\t{\r\n\t\t\t\"title\": \"{{name_img}}\",\r\n\t\t\t\"order\": 1\r\n\t\t}\r\n\t]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/insert-all-pictures/{{id_place}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"insert-all-pictures",
+								"{{id_place}}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Adiciona ordem nas imagens",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n\t\"images\": [\r\n\t\t{\r\n\t\t\t\"title\": \"{{name_img}}\",\r\n\t\t\t\"order\": 1\r\n\t\t}\r\n\t]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/insert-all-pictures/{{id_place}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"insert-all-pictures",
+										"{{id_place}}"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "311"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"137-KankxBPnxM8Ikmb8fK+QLbIIUsM\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 24 May 2020 15:32:17 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": 361,\n        \"name\": \"Picture_1\",\n        \"path\": \"http://localhost:3001/static/images/8f667cb697c3f0938a5c6b1987545da0.png\",\n        \"path_thumbnail\": \"http://localhost:3001/static/images/226bd4a5b593f0fef844c35f0dd40ec9.png\",\n        \"order\": 1,\n        \"place_id\": \"1248\",\n        \"updatedAt\": \"2020-05-24T15:32:16.700Z\",\n        \"createdAt\": \"2020-05-24T15:32:16.700Z\"\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "Listagem de status",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "02797a0a-8e46-4327-9b87-8a85221313ac",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response includes results status_id\", function(){\r",
+									"    pm.response.json().map(item => {\r",
+									"        pm.expect(item).to.include.keys(\"id\");    \r",
+									"    } )\r",
+									"})\r",
+									"\r",
+									"let firstResponse = pm.response.json()[0];\r",
+									"let id_status = firstResponse.id;\r",
+									"\r",
+									"pm.environment.set(\"id_status\", id_status);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/list-status",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"list-status"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Listagem de status",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/list-status",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"list-status"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "146"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"92-VTb8seZs3GjXMTZGboNbTXS8YZA\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 24 May 2020 15:31:15 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": 1,\n        \"description\": \"Disponível\"\n    },\n    {\n        \"id\": 2,\n        \"description\": \"Alugado\"\n    },\n    {\n        \"id\": 3,\n        \"description\": \"Inativo\"\n    },\n    {\n        \"id\": 4,\n        \"description\": \"Cadastro parcial\"\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "Busca por cep",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "911ccc24-c56b-4b35-a389-85017baee0d7",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response includes results address\", function(){\r",
+									"    pm.expect(pm.response.json());    \r",
+									"})\r",
+									"\r",
+									"let firstResponse = pm.response.json();\r",
+									"let district = firstResponse.district;\r",
+									"let city = firstResponse.city;\r",
+									"let state = firstResponse.state;\r",
+									"let zip_code = firstResponse.zip_code;\r",
+									"let address = firstResponse.address;\r",
+									"\r",
+									"pm.environment.set(\"address\", address);\r",
+									"pm.environment.set(\"district\", district);\r",
+									"pm.environment.set(\"city\", city);\r",
+									"pm.environment.set(\"state\", state);\r",
+									"pm.environment.set(\"zip_code\", zip_code);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/search-zip-code?zipCode=03011-001",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"search-zip-code"
+							],
+							"query": [
+								{
+									"key": "zipCode",
+									"value": "03011-001"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Busca por cep",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/search-zip-code?zipCode=03011-001",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"search-zip-code"
+									],
+									"query": [
+										{
+											"key": "zipCode",
+											"value": "03011-001"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "108"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"6c-DMIuvCUVvlyP0Q5G4QTp5vIoz24\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 24 May 2020 15:32:43 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"address\": \"Rua Maria Marcolina\",\n    \"district\": \"Brás\",\n    \"city\": \"São Paulo\",\n    \"state\": \"SP\",\n    \"zip_code\": \"03011-001\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Lista tipos de espaço",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "3972cb9d-cb4d-4594-b793-2f9c87c7010d",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response includes results space_type_id\", function(){\r",
+									"    pm.response.json().map(item => {\r",
+									"        pm.expect(item).to.include.keys(\"id\");    \r",
+									"    } )\r",
+									"})\r",
+									"\r",
+									"let firstResponse = pm.response.json()[0];\r",
+									"let id_space_type = firstResponse.id;\r",
+									"\r",
+									"pm.environment.set(\"id_space_type\", id_space_type);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/space-type",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"space-type"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Lista tipos de espaço",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/space-type",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"space-type"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "65"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"41-xn0bWPz1q1OBsY2ogbHqBKVgjOU\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 24 May 2020 15:32:58 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": 1,\n        \"description\": \"Loja\"\n    },\n    {\n        \"id\": 2,\n        \"description\": \"Quiosque\"\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "Lista tipos de local",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "ea3097f1-0256-4d67-8c05-c910c9bba7bf",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response includes results local_type_id\", function(){\r",
+									"    pm.response.json().map(item => {\r",
+									"        pm.expect(item).to.include.keys(\"id\");    \r",
+									"    } )\r",
+									"})\r",
+									"\r",
+									"let firstResponse = pm.response.json()[0];\r",
+									"let id_local_type = firstResponse.id;\r",
+									"\r",
+									"pm.environment.set(\"id_local_type\", id_local_type);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/local-type",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"local-type"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Lista tipos de local",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/local-type",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"local-type"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "153"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"99-5nr2lKWd1NqJcg32MTmwkzf1L5E\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 24 May 2020 15:33:14 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": 1,\n        \"description\": \"Shopping\"\n    },\n    {\n        \"id\": 2,\n        \"description\": \"Posto de Gasolina\"\n    },\n    {\n        \"id\": 3,\n        \"description\": \"Centro comercial\"\n    },\n    {\n        \"id\": 4,\n        \"description\": \"Galeria\"\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "Lista posições físicas",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "9c9178e6-95e0-4291-8553-1153c982690c",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response includes results position_id\", function(){\r",
+									"    pm.response.json().map(item => {\r",
+									"        pm.expect(item).to.include.keys(\"id\");    \r",
+									"    } )\r",
+									"})\r",
+									"\r",
+									"let firstResponse = pm.response.json()[0];\r",
+									"let id_position = firstResponse.id;\r",
+									"\r",
+									"pm.environment.set(\"id_position\", id_position);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/place-positions",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"place-positions"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Lista posições físicas",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/place-positions",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"place-positions"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "632"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"278-LtX6B0v875fmn6y62M9TAxt+8Xo\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 24 May 2020 15:33:24 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": 1,\n        \"description\": \"Esquina\",\n        \"tipo_local_id\": 5\n    },\n    {\n        \"id\": 2,\n        \"description\": \"Meio\",\n        \"tipo_local_id\": 5\n    },\n    {\n        \"id\": 3,\n        \"description\": \"Estacionamento\",\n        \"tipo_local_id\": 1\n    },\n    {\n        \"id\": 4,\n        \"description\": \"Interno\",\n        \"tipo_local_id\": 1\n    },\n    {\n        \"id\": 5,\n        \"description\": \"Externo\",\n        \"tipo_local_id\": 1\n    },\n    {\n        \"id\": 6,\n        \"description\": \"Estacionamento\",\n        \"tipo_local_id\": 3\n    },\n    {\n        \"id\": 7,\n        \"description\": \"Interno\",\n        \"tipo_local_id\": 3\n    },\n    {\n        \"id\": 8,\n        \"description\": \"Externo\",\n        \"tipo_local_id\": 3\n    },\n    {\n        \"id\": 9,\n        \"description\": \"Estacionamento\",\n        \"tipo_local_id\": 4\n    },\n    {\n        \"id\": 10,\n        \"description\": \"Interno\",\n        \"tipo_local_id\": 4\n    },\n    {\n        \"id\": 11,\n        \"description\": \"Externo\",\n        \"tipo_local_id\": 4\n    },\n    {\n        \"id\": 12,\n        \"description\": \"Posto\",\n        \"tipo_local_id\": 2\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "Busca empreendimento",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "ae92acb4-e1cc-4829-9c37-5e2d271b09e6",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response includes results business_enterprise_id\", function(){\r",
+									"    pm.response.json().map(item => {\r",
+									"        pm.expect(item).to.include.keys(\"id\");    \r",
+									"    } )\r",
+									"})\r",
+									"\r",
+									"let firstResponse = pm.response.json()[0];\r",
+									"let id_business_enterprise = firstResponse.id;\r",
+									"\r",
+									"pm.environment.set(\"id_business_enterprise\", id_business_enterprise);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/search-business-enterprise/tes",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"search-business-enterprise",
+								"tes"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Busca empreendimento",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/search-business-enterprise/tes",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"search-business-enterprise",
+										"tes"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "5803"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"16ab-hLRDcIZjJNuOzpMaBqx79GiR1Dg\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 24 May 2020 15:34:08 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": 51,\n        \"name\": \"Teste Pedro\",\n        \"description\": \"fasdfasfasdfasdfasdfasdf\",\n        \"address\": \"Rua Frei Caneca\",\n        \"number\": 555,\n        \"zip_code\": \"93042\",\n        \"complement\": null,\n        \"district\": \"Pinheiro\",\n        \"city\": \"São Leopoldo\",\n        \"latitude\": \"-29.76342440\",\n        \"longitude\": \"-51.12005190\"\n    },\n    {\n        \"id\": 61,\n        \"name\": \"Teste Pedro\",\n        \"description\": \"fasdfasdfasdfasdfas\",\n        \"address\": \"Avenida Pedro Américo\",\n        \"number\": 4444,\n        \"zip_code\": \"93040\",\n        \"complement\": null,\n        \"district\": \"São José\",\n        \"city\": \"São Leopoldo\",\n        \"latitude\": \"-29.76611310\",\n        \"longitude\": \"-51.13275530\"\n    },\n    {\n        \"id\": 71,\n        \"name\": \"Teste\",\n        \"description\": \"fasdfasdfasdfa\",\n        \"address\": \"Rua Frei Caneca\",\n        \"number\": 2312312,\n        \"zip_code\": \"93042\",\n        \"complement\": null,\n        \"district\": \"Pinheiro\",\n        \"city\": \"São Leopoldo\",\n        \"latitude\": \"-29.76342440\",\n        \"longitude\": \"-51.12005190\"\n    },\n    {\n        \"id\": 81,\n        \"name\": \"Teste\",\n        \"description\": \"fasdfasdfasdfas\",\n        \"address\": \"Avenida Pedro Américo\",\n        \"number\": 12312,\n        \"zip_code\": \"93040\",\n        \"complement\": null,\n        \"district\": \"São José\",\n        \"city\": \"São Leopoldo\",\n        \"latitude\": \"-29.76611310\",\n        \"longitude\": \"-51.13275530\"\n    },\n    {\n        \"id\": 91,\n        \"name\": \"Teste Pedro\",\n        \"description\": \"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras in hendrerit arcu. Curabitur sit amet velit leo. Sed semper, metus non luctus suscipit, est ligula fermentum eros, a ultrices massa dui eu est. Morbi eu libero at dui egestas hendrerit vitae va\",\n        \"address\": \"Rua 21 de Abril\",\n        \"number\": 950,\n        \"zip_code\": \"03047-000\",\n        \"complement\": null,\n        \"district\": \"Brás\",\n        \"city\": \"São Paulo\",\n        \"latitude\": \"0.00000000\",\n        \"longitude\": \"0.00000000\"\n    },\n    {\n        \"id\": 101,\n        \"name\": \"Teste empreendimento\",\n        \"description\": \"dfsdfasdfasdfasdfasdfasd\",\n        \"address\": \"Rua 2 de Fevereiro\",\n        \"number\": 534534534,\n        \"zip_code\": \"04236-055\",\n        \"complement\": null,\n        \"district\": \"Vila Heliopolis\",\n        \"city\": \"São Paulo\",\n        \"latitude\": \"-23.61648250\",\n        \"longitude\": \"-46.59219340\"\n    },\n    {\n        \"id\": 121,\n        \"name\": \"Teste Empreendimento Pedro\",\n        \"description\": \"fasdfasdfasdfasdfa\",\n        \"address\": \"Avenida Pedro Américo\",\n        \"number\": 5343,\n        \"zip_code\": \"93040\",\n        \"complement\": null,\n        \"district\": \"São José\",\n        \"city\": \"São Leopoldo\",\n        \"latitude\": \"-29.76611310\",\n        \"longitude\": \"-51.13275530\"\n    },\n    {\n        \"id\": 131,\n        \"name\": \"Teste Pedro\",\n        \"description\": \"fasdfasdfasdfasdfasdfasdfasdfasdffasdfasdfasdfasdfasdfasdfasdfasdffasdfasdfasdfasdfasdfasdfasdfasdffasdfasdfasdfasdfasdfasdfasdfasdffasdfasdfasdfasdfasdfasdfasdfasdffasdfasdfasdfasdfasdfasdfasdfasdf\",\n        \"address\": \"Avenida Pedro Américo\",\n        \"number\": 423423,\n        \"zip_code\": \"93040\",\n        \"complement\": null,\n        \"district\": \"São José\",\n        \"city\": \"São Leopoldo\",\n        \"latitude\": \"-29.76611310\",\n        \"longitude\": \"-51.13275530\"\n    },\n    {\n        \"id\": 141,\n        \"name\": \"Teste\",\n        \"description\": \"fasdfasdfasdfad\",\n        \"address\": \"Avenida Pedro Américo\",\n        \"number\": 34523423,\n        \"zip_code\": \"93040\",\n        \"complement\": null,\n        \"district\": \"São José\",\n        \"city\": \"São Leopoldo\",\n        \"latitude\": \"-29.76611310\",\n        \"longitude\": \"-51.13275530\"\n    },\n    {\n        \"id\": 151,\n        \"name\": \"Teste\",\n        \"description\": \"dffasdfasdfasdfasdfa\",\n        \"address\": \"Rua Frei Caneca\",\n        \"number\": 4123421,\n        \"zip_code\": \"93042\",\n        \"complement\": null,\n        \"district\": \"Pinheiro\",\n        \"city\": \"São Leopoldo\",\n        \"latitude\": \"-29.76342440\",\n        \"longitude\": \"-51.12005190\"\n    },\n    {\n        \"id\": 161,\n        \"name\": \"Teste\",\n        \"description\": \"fasdfasdfasdfasdfasd\",\n        \"address\": \"Avenida Pedro Américo\",\n        \"number\": 34234,\n        \"zip_code\": \"93040\",\n        \"complement\": null,\n        \"district\": \"São José\",\n        \"city\": \"São Leopoldo\",\n        \"latitude\": \"-29.76611310\",\n        \"longitude\": \"-51.13275530\"\n    },\n    {\n        \"id\": 171,\n        \"name\": \"Teste de empreendimento\",\n        \"description\": \"fasfasfdasds\",\n        \"address\": \"Avenida Pedro Américo\",\n        \"number\": 5345345,\n        \"zip_code\": \"93040\",\n        \"complement\": \"Teste\",\n        \"district\": \"São José\",\n        \"city\": \"São Leopoldo\",\n        \"latitude\": \"-29.76611310\",\n        \"longitude\": \"-51.13275530\"\n    },\n    {\n        \"id\": 191,\n        \"name\": \"Teste\",\n        \"description\": \"fasdfasdfas\",\n        \"address\": \"Avenida Pedro Américo\",\n        \"number\": 423423,\n        \"zip_code\": \"93040\",\n        \"complement\": null,\n        \"district\": \"São José\",\n        \"city\": \"São Leopoldo\",\n        \"latitude\": \"-29.76611310\",\n        \"longitude\": \"-51.13275530\"\n    },\n    {\n        \"id\": 201,\n        \"name\": \"Teste\",\n        \"description\": \"fasdfasdfasdfasfdasds\",\n        \"address\": \"Rua Frei Caneca\",\n        \"number\": 323,\n        \"zip_code\": \"93042\",\n        \"complement\": null,\n        \"district\": \"Pinheiro\",\n        \"city\": \"São Leopoldo\",\n        \"latitude\": \"-29.76342440\",\n        \"longitude\": \"-51.12005190\"\n    },\n    {\n        \"id\": 211,\n        \"name\": \"Teste\",\n        \"description\": \"fasdfasdfas\",\n        \"address\": \"Rua Frei Caneca\",\n        \"number\": 23423,\n        \"zip_code\": \"93042\",\n        \"complement\": null,\n        \"district\": \"Pinheiro\",\n        \"city\": \"São Leopoldo\",\n        \"latitude\": \"-29.76342440\",\n        \"longitude\": \"-51.12005190\"\n    },\n    {\n        \"id\": 221,\n        \"name\": \"Teste com id\",\n        \"description\": \"fasdfasdfasd\",\n        \"address\": \"Rua Frei Caneca\",\n        \"number\": 45343,\n        \"zip_code\": \"93042\",\n        \"complement\": null,\n        \"district\": \"Pinheiro\",\n        \"city\": \"São Leopoldo\",\n        \"latitude\": \"-29.76342440\",\n        \"longitude\": \"-51.12005190\"\n    },\n    {\n        \"id\": 231,\n        \"name\": \"Teste null\",\n        \"description\": \"fasdfasdfasd\",\n        \"address\": \"Rua Frei Caneca\",\n        \"number\": 534534,\n        \"zip_code\": \"93042\",\n        \"complement\": null,\n        \"district\": \"Pinheiro\",\n        \"city\": \"São Leopoldo\",\n        \"latitude\": \"-29.76342440\",\n        \"longitude\": \"-51.12005190\"\n    },\n    {\n        \"id\": 241,\n        \"name\": \"Teste null\",\n        \"description\": \"fasdfasdfas\",\n        \"address\": \"Rua Frei Caneca\",\n        \"number\": 4343,\n        \"zip_code\": \"93042\",\n        \"complement\": null,\n        \"district\": \"Pinheiro\",\n        \"city\": \"São Leopoldo\",\n        \"latitude\": \"-29.76342440\",\n        \"longitude\": \"-51.12005190\"\n    },\n    {\n        \"id\": 271,\n        \"name\": \"Teste\",\n        \"description\": \"fsdczxcssdfsd\",\n        \"address\": \"Rua Frei Caneca\",\n        \"number\": 534534,\n        \"zip_code\": \"93042\",\n        \"complement\": null,\n        \"district\": \"Pinheiro\",\n        \"city\": \"São Leopoldo\",\n        \"latitude\": \"-29.76342440\",\n        \"longitude\": \"-51.12005190\"\n    },\n    {\n        \"id\": 411,\n        \"name\": \"Teste Pedro\",\n        \"description\": \"asdfasdfas\",\n        \"address\": \"Rua Frei Caneca\",\n        \"number\": 53453453,\n        \"zip_code\": \"93042\",\n        \"complement\": null,\n        \"district\": \"Pinheiro\",\n        \"city\": \"São Leopoldo\",\n        \"latitude\": \"-29.76342440\",\n        \"longitude\": \"-51.12005190\"\n    },\n    {\n        \"id\": 421,\n        \"name\": \"Teste\",\n        \"description\": \"fasdfas\",\n        \"address\": \"Rua Frei Caneca\",\n        \"number\": 534534,\n        \"zip_code\": \"93042\",\n        \"complement\": null,\n        \"district\": \"Pinheiro\",\n        \"city\": \"São Leopoldo\",\n        \"latitude\": \"-29.76342440\",\n        \"longitude\": \"-51.12005190\"\n    },\n    {\n        \"id\": 431,\n        \"name\": \"Teste\",\n        \"description\": \"hgjhgjhghj\",\n        \"address\": \"Rua Frei Caneca\",\n        \"number\": 76676,\n        \"zip_code\": \"93042\",\n        \"complement\": null,\n        \"district\": \"Pinheiro\",\n        \"city\": \"São Leopoldo\",\n        \"latitude\": \"-29.76342440\",\n        \"longitude\": \"-51.12005190\"\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "Lista instalações",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "57a16799-4647-4ae0-99cf-13d0a9e49224",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response includes results installation_id\", function(){\r",
+									"    pm.response.json().map(item => {\r",
+									"        pm.expect(item).to.include.keys(\"id\");    \r",
+									"    } )\r",
+									"})\r",
+									"\r",
+									"let firstResponse = pm.response.json()[0];\r",
+									"let id_installation = firstResponse.id;\r",
+									"\r",
+									"pm.environment.set(\"id_installation\", id_installation);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/place-installations",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"place-installations"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Lista instalações",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/place-installations",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"place-installations"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "405"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"195-+OuWh5fTUXxq1whs5voSIgHFy14\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 24 May 2020 15:34:32 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": 1,\n        \"description\": \"Área de retaguarda\"\n    },\n    {\n        \"id\": 2,\n        \"description\": \"Mezanino Total\"\n    },\n    {\n        \"id\": 3,\n        \"description\": \"Cozinha\"\n    },\n    {\n        \"id\": 4,\n        \"description\": \"Estrutura Reforçada\"\n    },\n    {\n        \"id\": 5,\n        \"description\": \"Mobília\"\n    },\n    {\n        \"id\": 6,\n        \"description\": \"Segurança\"\n    },\n    {\n        \"id\": 7,\n        \"description\": \"Limpeza\"\n    },\n    {\n        \"id\": 8,\n        \"description\": \"Mezanino Parcial\"\n    },\n    {\n        \"id\": 9,\n        \"description\": \"Necessita de reforma\"\n    },\n    {\n        \"id\": 10,\n        \"description\": \"Estacionamento Coberto\"\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "Lista segmentos",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "7a77a676-f286-438c-ad8c-59c932567ac1",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response includes results segments_id\", function(){\r",
+									"    pm.response.json().map(item => {\r",
+									"        pm.expect(item).to.include.keys(\"id\");    \r",
+									"    } )\r",
+									"})\r",
+									"\r",
+									"let firstResponse = pm.response.json()[0];\r",
+									"let id_segments = firstResponse.id;\r",
+									"\r",
+									"pm.environment.set(\"id_segments\", id_segments);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/place-segments",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"place-segments"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Lista segmentos",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/place-segments",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"place-segments"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "108"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"6c-JwAtQnAqIH+zwnJPspuMDIPZjGo\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 24 May 2020 15:35:58 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": 1,\n        \"description\": \"Comércio\"\n    },\n    {\n        \"id\": 11,\n        \"description\": \"Serviços\"\n    },\n    {\n        \"id\": 21,\n        \"description\": \"Alimentos\"\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "Atualiza dados da place step three",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "ae6e6079-284e-4347-b306-3e9cea96847e",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"place\": {\r\n\t\t\"name\": \"place de teste automático id: {{id_place}}\",\r\n\t\t\"business_enterprise_id\": \"{{id_business_enterprise}}\",\r\n\t\t\"place_status_id\": \"{{id_status}}\",\r\n\t\t\"place_code\": \"{{id_place}}\",\r\n\t\t\"internal_code\": \"{{id_place}}\",\r\n\t\t\"registration_number\": \"{{id_place}}\",\r\n\t\t\"registry\": \"ABDFESS\",\r\n\t\t\"total_area\": 1000,\r\n\t\t\"facade_area\": 1000,\r\n\t\t\"place_type_id\": \"{{id_space_type}}\",\r\n\t\t\"place_physical_location_id\": \"{{id_local_type}}\",\r\n\t\t\"position_of_place_id\": \"{{id_position}}\",\r\n\t\t\"ceiling_height\": 3.5,\r\n\t\t\"bathroom_count\": 2,\r\n\t\t\"floor_numbers\": 2,\r\n\t\t\"garage_count\": 2,\r\n\t\t\"description\": \"Descrição do empreendimento\",\r\n\t\t\"predominant_social_class\": \"B\",\r\n\t\t\"predominant_gender\": \"Masculino\",\r\n\t\t\"age_range\": \"25-64\",\r\n\t\t\"avg_monthly_people_flow\": 40000\r\n\t},\r\n\t\"business_segment\": {\r\n\t\t\"id\":  [\"{{id_segments}}\"]\r\n\t},\r\n\t\"place_instalations\": {\r\n\t\t\"id\": [\"{{id_installation}}\"]\r\n\t},\r\n\t\"place_location\": {\r\n\t\t\"zip_code\": \"{{zip_code}}\",\r\n\t\t\"address\": \"{{address}}\",\r\n\t\t\"number\": 175,\r\n\t\t\"complement\": \"Casa\",\r\n\t\t\"district\": \"{{district}}\",\r\n\t\t\"city\": \"{{city}}\",\r\n\t\t\"zone\": \"zona sul\"\r\n\t}\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/place-step-three/{{id_place}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"place-step-three",
+								"{{id_place}}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Atualiza dados da place step three",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n\t\"place\": {\r\n\t\t\"name\": \"place de teste automático id: {{id_place}}\",\r\n\t\t\"business_enterprise_id\": \"{{id_business_enterprise}}\",\r\n\t\t\"place_status_id\": \"{{id_status}}\",\r\n\t\t\"place_code\": \"{{id_place}}\",\r\n\t\t\"internal_code\": \"{{id_place}}\",\r\n\t\t\"registration_number\": \"{{id_place}}\",\r\n\t\t\"registry\": \"ABDFESS\",\r\n\t\t\"total_area\": 1000,\r\n\t\t\"facade_area\": 1000,\r\n\t\t\"place_type_id\": \"{{id_space_type}}\",\r\n\t\t\"place_physical_location_id\": \"{{id_local_type}}\",\r\n\t\t\"position_of_place_id\": \"{{id_position}}\",\r\n\t\t\"ceiling_height\": 3.5,\r\n\t\t\"bathroom_count\": 2,\r\n\t\t\"floor_numbers\": 2,\r\n\t\t\"garage_count\": 2,\r\n\t\t\"description\": \"Descrição do empreendimento\",\r\n\t\t\"predominant_social_class\": \"B\",\r\n\t\t\"predominant_gender\": \"Masculino\",\r\n\t\t\"age_range\": \"25-64\",\r\n\t\t\"avg_monthly_people_flow\": 40000\r\n\t},\r\n\t\"business_segment\": {\r\n\t\t\"id\":  [\"{{id_segments}}\"]\r\n\t},\r\n\t\"place_instalations\": {\r\n\t\t\"id\": [\"{{id_installation}}\"]\r\n\t},\r\n\t\"place_location\": {\r\n\t\t\"zip_code\": \"{{zip_code}}\",\r\n\t\t\"address\": \"{{address}}\",\r\n\t\t\"number\": 175,\r\n\t\t\"complement\": \"Casa\",\r\n\t\t\"district\": \"{{district}}\",\r\n\t\t\"city\": \"{{city}}\",\r\n\t\t\"zone\": \"zona sul\"\r\n\t}\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/place-step-three/{{id_place}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"place-step-three",
+										"{{id_place}}"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1655"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"677-smWh/D1xe9rsXiFCnoKEC/lrjAk\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 24 May 2020 15:36:18 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"place\": {\n        \"id\": 1248,\n        \"name\": \"place de teste automático id: 1248\",\n        \"place_code\": \"1248\",\n        \"active\": true,\n        \"description\": \"Descrição do empreendimento\",\n        \"usable_area\": 0,\n        \"unit_of_measure_usable_area\": \"m2\",\n        \"total_area\": 1000,\n        \"unit_of_measure_total_area\": \"m2\",\n        \"facade_area\": 1000,\n        \"unit_of_measure_facade_area\": \"m\",\n        \"rear_area\": 0,\n        \"unit_of_measure_rear_area\": \"m2\",\n        \"has_security\": false,\n        \"has_service_cleaning\": false,\n        \"bathroom_count\": 2,\n        \"garage_count\": 2,\n        \"near_metro\": false,\n        \"rent_price\": null,\n        \"total_price\": null,\n        \"is_deleted\": false,\n        \"predominant_social_class\": \"B\",\n        \"predominant_gender\": \"Masculino\",\n        \"age_range\": \"25-64\",\n        \"avg_monthly_people_flow\": 40000,\n        \"number_of_visits\": 0,\n        \"indicated_by\": \"Camargo\",\n        \"is_completed\": false,\n        \"registration_number\": \"1248\",\n        \"registry\": \"ABDFESS\",\n        \"internal_code\": \"1248\",\n        \"floor_numbers\": 2,\n        \"ceiling_height\": 3.5,\n        \"createdAt\": \"2020-05-24T15:30:31.000Z\",\n        \"updatedAt\": \"2020-05-24T15:36:17.089Z\",\n        \"place_type_id\": \"1\",\n        \"user_id\": null,\n        \"place_physical_location_id\": \"1\",\n        \"business_enterprise_id\": \"51\",\n        \"position_of_place_id\": \"1\",\n        \"service_type_id\": 1,\n        \"owner_id\": 1,\n        \"place_status_id\": \"1\"\n    },\n    \"segments\": [\n        {\n            \"id\": 1471,\n            \"business_segment_id\": \"1\",\n            \"place_id\": 1248,\n            \"updatedAt\": \"2020-05-24T15:36:17.342Z\",\n            \"createdAt\": \"2020-05-24T15:36:17.342Z\"\n        }\n    ],\n    \"installations\": [\n        {\n            \"id\": 2676,\n            \"place_installation_id\": \"1\",\n            \"place_id\": 1248,\n            \"updatedAt\": \"2020-05-24T15:36:17.768Z\",\n            \"createdAt\": \"2020-05-24T15:36:17.768Z\"\n        }\n    ],\n    \"place_location\": {\n        \"id\": 1096,\n        \"latitude\": -23.537417,\n        \"longitude\": -46.6162766,\n        \"address\": \"Rua Maria Marcolina\",\n        \"district\": \"Brás\",\n        \"city\": \"São Paulo\",\n        \"number\": 175,\n        \"country\": \"Brazil\",\n        \"zip_code\": \"03011-001\",\n        \"place_id\": 1248,\n        \"updatedAt\": \"2020-05-24T15:36:18.600Z\",\n        \"createdAt\": \"2020-05-24T15:36:18.600Z\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Adiciona proximidades",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "5a6f5607-9f7e-4c96-af5f-b93ed1387d5d",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"place_facility\": [\r\n\t\t{\r\n\t\t\t\"title\": \"Grandes Avenidas\",\r\n\t\t\t\"description\": \"Avenida 7 de Setembro fica a 2 quadras de distância, Avenida Borges de medeiros fica a 3 quadras de distância\"\r\n\t\t},\r\n\t\t{\r\n\t\t\t\"title\": \"Estações de Metro\",\r\n\t\t\t\"description\": \"Estação santa fé\"\r\n\t\t}\r\n\t],\r\n\t\"place_relevant_information\": [\r\n\t\t{\r\n\t\t\t\"title\": \"Pré requisitos do aluguel\",\r\n\t\t\t\"description\": \"Aqui são os pré requisitos do aluguel\"\r\n\t\t},\r\n\t\t{\r\n\t\t\t\"title\": \"Proximidades\",\r\n\t\t\t\"description\": \"Aqui são as informações referentes a proximidades\"\r\n\t\t},\r\n\t\t{\r\n\t\t\t\"title\": \"Disponibilidade para entrada\",\r\n\t\t\t\"description\": \"Aqui é a disponibilidade para entrada no imóvel\"\r\n\t\t},\r\n\t\t{\r\n\t\t\t\"title\": \"Restrições de uso\",\r\n\t\t\t\"description\": \"Aqui vão as restrições de uso do imóvel\"\r\n\t\t}\r\n\t]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/place-step-four/{{id_place}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"place-step-four",
+								"{{id_place}}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Adiciona proximidades",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n\t\"place_facility\": [\r\n\t\t{\r\n\t\t\t\"title\": \"Grandes Avenidas\",\r\n\t\t\t\"description\": \"Avenida 7 de Setembro fica a 2 quadras de distância, Avenida Borges de medeiros fica a 3 quadras de distância\"\r\n\t\t},\r\n\t\t{\r\n\t\t\t\"title\": \"Estações de Metro\",\r\n\t\t\t\"description\": \"Estação santa fé\"\r\n\t\t}\r\n\t],\r\n\t\"place_relevant_information\": [\r\n\t\t{\r\n\t\t\t\"title\": \"Pré requisitos do aluguel\",\r\n\t\t\t\"description\": \"Aqui são os pré requisitos do aluguel\"\r\n\t\t},\r\n\t\t{\r\n\t\t\t\"title\": \"Proximidades\",\r\n\t\t\t\"description\": \"Aqui são as informações referentes a proximidades\"\r\n\t\t},\r\n\t\t{\r\n\t\t\t\"title\": \"Disponibilidade para entrada\",\r\n\t\t\t\"description\": \"Aqui é a disponibilidade para entrada no imóvel\"\r\n\t\t},\r\n\t\t{\r\n\t\t\t\"title\": \"Restrições de uso\",\r\n\t\t\t\"description\": \"Aqui vão as restrições de uso do imóvel\"\r\n\t\t}\r\n\t]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/place-step-four/{{id_place}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"place-step-four",
+										"{{id_place}}"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1298"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"512-nZOGk8N9wicP6T+wsDaAXQ94j2o\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 24 May 2020 15:36:38 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"place_facility\": [\n        {\n            \"id\": 806,\n            \"title\": \"Grandes Avenidas\",\n            \"description\": \"Avenida 7 de Setembro fica a 2 quadras de distância, Avenida Borges de medeiros fica a 3 quadras de distância\",\n            \"place_id\": \"1248\",\n            \"updatedAt\": \"2020-05-24T15:36:37.927Z\",\n            \"createdAt\": \"2020-05-24T15:36:37.927Z\"\n        },\n        {\n            \"id\": 805,\n            \"title\": \"Estações de Metro\",\n            \"description\": \"Estação santa fé\",\n            \"place_id\": \"1248\",\n            \"updatedAt\": \"2020-05-24T15:36:37.927Z\",\n            \"createdAt\": \"2020-05-24T15:36:37.927Z\"\n        }\n    ],\n    \"place_relevant_information\": [\n        {\n            \"id\": 1232,\n            \"title\": \"Pré requisitos do aluguel\",\n            \"description\": \"Aqui são os pré requisitos do aluguel\",\n            \"place_id\": \"1248\",\n            \"updatedAt\": \"2020-05-24T15:36:38.230Z\",\n            \"createdAt\": \"2020-05-24T15:36:38.230Z\"\n        },\n        {\n            \"id\": 1229,\n            \"title\": \"Proximidades\",\n            \"description\": \"Aqui são as informações referentes a proximidades\",\n            \"place_id\": \"1248\",\n            \"updatedAt\": \"2020-05-24T15:36:38.230Z\",\n            \"createdAt\": \"2020-05-24T15:36:38.230Z\"\n        },\n        {\n            \"id\": 1230,\n            \"title\": \"Disponibilidade para entrada\",\n            \"description\": \"Aqui é a disponibilidade para entrada no imóvel\",\n            \"place_id\": \"1248\",\n            \"updatedAt\": \"2020-05-24T15:36:38.230Z\",\n            \"createdAt\": \"2020-05-24T15:36:38.230Z\"\n        },\n        {\n            \"id\": 1231,\n            \"title\": \"Restrições de uso\",\n            \"description\": \"Aqui vão as restrições de uso do imóvel\",\n            \"place_id\": \"1248\",\n            \"updatedAt\": \"2020-05-24T15:36:38.231Z\",\n            \"createdAt\": \"2020-05-24T15:36:38.231Z\"\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Adiciona valores na place",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "1b435969-fca4-4da9-815a-2ced35c31ec0",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"place_values\": {\r\n\t\t\"rent_price\": 2300.00,\r\n\t\t\"condo_fee_type\": \"Coeficiente de rateio de despesas\",\r\n\t\t\"expenditure_participation_coefficient\": 0.10,\r\n\t\t\"condo_fee\": 300.00,\r\n\t\t\"iptu_type\": \"Mensal\",\r\n\t\t\"iptu\": 500.00,\r\n\t\t\"variable_rent_rate_type\": \"Percentual do faturamento bruto do cliente\",\r\n\t\t\"variable_rent_rate\": 0.10,\r\n\t\t\"yearly_staggered_rent_type\": \"Anual\",\r\n\t\t\"yearly_staggered_rent\": 1.00,\r\n\t\t\"december_extra_rate_type\": \"Percentual do aluguel minimo\",\r\n\t\t\"december_extra_rate\": 0.50,\r\n\t\t\"grace_period_months_type\": \"Aplica sob aluguel\",\r\n\t\t\"grace_period_months\": 2,\r\n\t\t\"promotion_fund_type\": \"Percentual do aluguel minimo\",\r\n\t\t\"promotion_fund\": 0.10,\r\n\t\t\"analysis_rate_type\": \"N/A\",\r\n\t\t\"analysis_rate\": 130.00,\r\n\t\t\"assignment_of_rights_of_use\": 200.00,\r\n\t\t\"rental_number\": 12,\r\n\t\t\"total_price\": 3200.00\r\n\t},\r\n\t\"place_taxes\": [\r\n\t\t{\r\n\t\t\t\"id\": 1,\r\n\t\t\t\"title\": \"Taxa de análise de projetos técnicos\",\r\n\t\t\t\"day\": 10,\r\n\t\t\t\"is_unique_payment_tax\": true\r\n\t\t},\r\n\t\t{\r\n\t\t\t\"id\": 2,\r\n\t\t\t\"title\": \"Cessão de direitos de uso (entrada)\",\r\n\t\t\t\"day\": 10,\r\n\t\t\t\"is_unique_payment_tax\": true\r\n\t\t},\r\n\t\t{\r\n\t\t\t\"id\": 3,\r\n\t\t\t\"title\": \"Cessão de direitos de uso (parcelas)\",\r\n\t\t\t\"day\": 10,\r\n\t\t\t\"is_unique_payment_tax\": true\r\n\t\t},\r\n\t\t{\r\n\t\t\t\"id\": 4,\r\n\t\t\t\"title\": \"Aluguel, Aluguel variável\",\r\n\t\t\t\"day\": 10,\r\n\t\t\t\"is_unique_payment_tax\": false\r\n\t\t},\r\n\t\t{\r\n\t\t\t\"id\": 5,\r\n\t\t\t\"title\": \"Condomínio\",\r\n\t\t\t\"day\": 10,\r\n\t\t\t\"is_unique_payment_tax\": false\r\n\t\t},\r\n\t\t{\r\n\t\t\t\"id\": 6,\r\n\t\t\t\"title\": \"IPTU\",\r\n\t\t\t\"day\": 10,\r\n\t\t\t\"is_unique_payment_tax\": false\r\n\t\t},\r\n\t\t{\r\n\t\t\t\"id\": 7,\r\n\t\t\t\"title\": \"Fundo de promoção e propaganda\",\r\n\t\t\t\"day\": 10,\r\n\t\t\t\"is_unique_payment_tax\": false\r\n\t\t}\r\n\t]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/place-step-six/{{id_place}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"place-step-six",
+								"{{id_place}}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Adiciona valores na place",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n\t\"place_values\": {\r\n\t\t\"rent_price\": 2300.00,\r\n\t\t\"condo_fee_type\": \"Coeficiente de rateio de despesas\",\r\n\t\t\"expenditure_participation_coefficient\": 0.10,\r\n\t\t\"condo_fee\": 300.00,\r\n\t\t\"iptu_type\": \"Mensal\",\r\n\t\t\"iptu\": 500.00,\r\n\t\t\"variable_rent_rate_type\": \"Percentual do faturamento bruto do cliente\",\r\n\t\t\"variable_rent_rate\": 0.10,\r\n\t\t\"yearly_staggered_rent_type\": \"Anual\",\r\n\t\t\"yearly_staggered_rent\": 1.00,\r\n\t\t\"december_extra_rate_type\": \"Percentual do aluguel minimo\",\r\n\t\t\"december_extra_rate\": 0.50,\r\n\t\t\"grace_period_months_type\": \"Aplica sob aluguel\",\r\n\t\t\"grace_period_months\": 2,\r\n\t\t\"promotion_fund_type\": \"Percentual do aluguel minimo\",\r\n\t\t\"promotion_fund\": 0.10,\r\n\t\t\"analysis_rate_type\": \"N/A\",\r\n\t\t\"analysis_rate\": 130.00,\r\n\t\t\"assignment_of_rights_of_use\": 200.00,\r\n\t\t\"rental_number\": 12,\r\n\t\t\"total_price\": 3200.00\r\n\t},\r\n\t\"place_taxes\": [\r\n\t\t{\r\n\t\t\t\"id\": 1,\r\n\t\t\t\"title\": \"Taxa de análise de projetos técnicos\",\r\n\t\t\t\"day\": 10,\r\n\t\t\t\"is_unique_payment_tax\": true\r\n\t\t},\r\n\t\t{\r\n\t\t\t\"id\": 2,\r\n\t\t\t\"title\": \"Cessão de direitos de uso (entrada)\",\r\n\t\t\t\"day\": 10,\r\n\t\t\t\"is_unique_payment_tax\": true\r\n\t\t},\r\n\t\t{\r\n\t\t\t\"id\": 3,\r\n\t\t\t\"title\": \"Cessão de direitos de uso (parcelas)\",\r\n\t\t\t\"day\": 10,\r\n\t\t\t\"is_unique_payment_tax\": true\r\n\t\t},\r\n\t\t{\r\n\t\t\t\"id\": 4,\r\n\t\t\t\"title\": \"Aluguel, Aluguel variável\",\r\n\t\t\t\"day\": 10,\r\n\t\t\t\"is_unique_payment_tax\": false\r\n\t\t},\r\n\t\t{\r\n\t\t\t\"id\": 5,\r\n\t\t\t\"title\": \"Condomínio\",\r\n\t\t\t\"day\": 10,\r\n\t\t\t\"is_unique_payment_tax\": false\r\n\t\t},\r\n\t\t{\r\n\t\t\t\"id\": 6,\r\n\t\t\t\"title\": \"IPTU\",\r\n\t\t\t\"day\": 10,\r\n\t\t\t\"is_unique_payment_tax\": false\r\n\t\t},\r\n\t\t{\r\n\t\t\t\"id\": 7,\r\n\t\t\t\"title\": \"Fundo de promoção e propaganda\",\r\n\t\t\t\"day\": 10,\r\n\t\t\t\"is_unique_payment_tax\": false\r\n\t\t}\r\n\t]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/place-step-six/{{id_place}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"place-step-six",
+										"{{id_place}}"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "2064"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"810-7tPt/P3r0iOeicRGU0wLpSJI7qo\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 24 May 2020 15:37:11 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"contract\": {\n        \"id\": 798,\n        \"has_availability\": true,\n        \"iptu\": 500,\n        \"condo_fee\": 300,\n        \"variable_rent_rate\": 0.1,\n        \"yearly_staggered_rent\": 1,\n        \"december_extra_rate\": 0.5,\n        \"grace_period_months\": 2,\n        \"analysis_rate\": 130,\n        \"assignment_of_rights_of_use\": 200,\n        \"administration_fee_rate\": null,\n        \"promotion_fund\": 0.1,\n        \"is_deleted\": false,\n        \"full_month\": \"Dezembro\",\n        \"transfer_day\": 10,\n        \"rental_number\": 12,\n        \"iptu_type\": \"Mensal\",\n        \"condo_fee_type\": \"Coeficiente de rateio de despesas\",\n        \"expenditure_participation_coefficient\": 0.1,\n        \"variable_rent_rate_type\": \"Percentual do faturamento bruto do cliente\",\n        \"yearly_staggered_rent_type\": \"Anual\",\n        \"december_extra_rate_type\": \"Percentual do aluguel minimo\",\n        \"grace_period_months_type\": \"Aplica sob aluguel\",\n        \"promotion_fund_type\": \"Percentual do aluguel minimo\",\n        \"analysis_rate_type\": \"N/A\",\n        \"createdAt\": \"2020-05-24T15:30:31.000Z\",\n        \"updatedAt\": \"2020-05-24T15:37:10.709Z\",\n        \"place_id\": 1248\n    },\n    \"taxes\": [\n        {\n            \"id\": 1206,\n            \"place_contract_id\": 798,\n            \"is_unique_payment_tax\": true,\n            \"place_contract_tax_id\": 1,\n            \"updatedAt\": \"2020-05-24T15:37:10.912Z\",\n            \"createdAt\": \"2020-05-24T15:37:10.912Z\"\n        },\n        {\n            \"id\": 1203,\n            \"place_contract_id\": 798,\n            \"is_unique_payment_tax\": true,\n            \"place_contract_tax_id\": 2,\n            \"updatedAt\": \"2020-05-24T15:37:10.912Z\",\n            \"createdAt\": \"2020-05-24T15:37:10.912Z\"\n        },\n        {\n            \"id\": 1204,\n            \"place_contract_id\": 798,\n            \"is_unique_payment_tax\": true,\n            \"place_contract_tax_id\": 3,\n            \"updatedAt\": \"2020-05-24T15:37:10.913Z\",\n            \"createdAt\": \"2020-05-24T15:37:10.913Z\"\n        },\n        {\n            \"id\": 1202,\n            \"place_contract_id\": 798,\n            \"is_unique_payment_tax\": false,\n            \"place_contract_tax_id\": 4,\n            \"updatedAt\": \"2020-05-24T15:37:10.913Z\",\n            \"createdAt\": \"2020-05-24T15:37:10.913Z\"\n        },\n        {\n            \"id\": 1205,\n            \"place_contract_id\": 798,\n            \"is_unique_payment_tax\": false,\n            \"place_contract_tax_id\": 5,\n            \"updatedAt\": \"2020-05-24T15:37:10.913Z\",\n            \"createdAt\": \"2020-05-24T15:37:10.913Z\"\n        },\n        {\n            \"id\": 1207,\n            \"place_contract_id\": 798,\n            \"is_unique_payment_tax\": false,\n            \"place_contract_tax_id\": 6,\n            \"updatedAt\": \"2020-05-24T15:37:10.913Z\",\n            \"createdAt\": \"2020-05-24T15:37:10.913Z\"\n        },\n        {\n            \"id\": 1208,\n            \"place_contract_id\": 798,\n            \"is_unique_payment_tax\": false,\n            \"place_contract_tax_id\": 7,\n            \"updatedAt\": \"2020-05-24T15:37:10.914Z\",\n            \"createdAt\": \"2020-05-24T15:37:10.914Z\"\n        }\n    ]\n}"
+						}
+					]
+				}
+			],
+			"description": "Diretório onde ficam todos os endpoints necessários para cadastrar um imóvel na plataforma.",
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
